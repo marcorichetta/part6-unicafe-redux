@@ -8,18 +8,35 @@ const counterReducer = (state = initialState, action) => {
     console.log(action)
     switch (action.type) {
         case 'GOOD':
-            let newState = {...state}
-            newState.good += 1
-
-            return newState
+            /**
+             * Return a new object `{}`
+             * copying the data from `state`
+             * and the modified part `good: +1`
+             *  {
+                    good: 1,
+                    ok: 0,
+                    bad: 0
+                }
+             */
+            return Object.assign({}, {
+                ...state,
+                good: +1
+            })
         case 'OK':
-            return state
+            return Object.assign({}, {
+                ...state,
+                ok: +1
+            })
         case 'BAD':
-            return state
+            return Object.assign({}, {
+                ...state,
+                bad: +1
+            })
         case 'ZERO':
+            return initialState
+        default:
             return state
     }
-    return state
 }
 
 export default counterReducer
